@@ -22,7 +22,7 @@ select proc_id, anest_name, -1, end_time from surgeries
 -- assuming proc_id is unique
 select 
 	ee.proc_id, 
-	(select count(proc_id) from events ev where ev.event_time >= min(ee.event_time) and ev.event_time <= max(ee.event_time) and ev.proc_id <> ee.proc_id order by) 
+	(select count(proc_id) from events ev where ev.event_time >= min(ee.event_time) and ev.event_time <= max(ee.event_time) and ev.proc_id <> ee.proc_id) 
 from events ee
 group by proc_id
 
