@@ -34,23 +34,3 @@ where (pensions_m.monts_so_far > 60) and (pensions_m.monts_so_far - pensions_m.m
 
 
 select * from pension_periods
-
-
-------------------------
-declare @months integer = 0 
-declare @nextyear integer = (select max(pen_year) from Pensions)
-
-while @months < 60 begin
-	select @months += isnull(month_cnt, 0)
-	from pensions
-	where sin = 'angie' and pen_year = @nextyear
-	order by pen_year desc
-
-	if @months < 60
-		set @nextyear -= 1
-	else
-		select * from Pensions where pen_year = @nextyear and sin = 'angie'
-end
-
-
-select @months, @nextyear
